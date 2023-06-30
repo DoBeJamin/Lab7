@@ -38,7 +38,7 @@ void loop()
   if (display.pressedA()) {
     //notify blynk
     Blynk.logEvent("buttona", "panic button A has been pressed"); 
-    Serial.print("alert"); //temporary alery because I ran out of events 
+    Serial.println("alert"); //temporary alery because I ran out of events 
 
     //displays "push sent" message and sets timer
     format_display();
