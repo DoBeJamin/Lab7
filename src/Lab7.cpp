@@ -25,15 +25,13 @@ int timer = 0;
 
 void setup()
 {
-  display.setup();
+
 
   pinMode(TEMPERATURE, INPUT);
 
-  Serial.begin(9600);
-
-  //delay(5000); 
+  //setup
   Blynk.begin(BLYNK_AUTH_TOKEN);
-
+  display.setup();
   Serial.begin(9600);
 
 }
@@ -50,9 +48,9 @@ void loop()
   if (display.pressedA()) {
     //notify blynk
     Blynk.logEvent("buttona", "panic button A has been pressed"); 
+    Serial.print("alert"); //temporary alery because I ran out of events 
 
-
-    //
+    //displays "push sent" message and sets timer
     format_display();
     display.println("Push Sent");
     display.display();
@@ -81,7 +79,7 @@ void loop()
     Blynk.virtualWrite(V0, temperature_fahrenheit);
     Blynk.virtualWrite(V1, temperature_celcius);
   }
-
+  //countdown before switching back to temperature displaying
   if (timer > 0) {
     timer--;
   }
